@@ -25,3 +25,15 @@ describe('temp down', () => {
     expect(wrapper).toContainReact(temperature)
   })
 })
+
+describe('Power Saving Mode', () => {
+  it('when on it prevents temperature from exceeding 25', () => {
+    const wrapper = shallow(<Thermostat />)
+    const temperature = <h1 className="temp">25C</h1>
+    const button = wrapper.find('#tempUp')
+    for (let i = 0; i < 10; i++) {
+      button.simulate('click')
+    }
+    expect(wrapper).toContainReact(temperature)
+  })
+})
