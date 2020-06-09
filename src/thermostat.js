@@ -14,8 +14,6 @@ export class Thermostat extends Component {
     }
   }
   
- 
-
   changeTempUp = () => {
     let newTemp = this.state.currentTemp + 1
     if (this.state.powerSavingMode === true) {
@@ -81,13 +79,13 @@ export class Thermostat extends Component {
   render() {
     return (
       <div>
-        <p>Temperature is {this.state.currentTemp}</p>
-        <button type="button" onClick= {this.changeTempDown}>Temp Down</button>
-        <button type="button" onClick= {this.changeTempUp}>Temp Up</button>
-        <button type="button" onClick= {this.powerSavingModeOn}>Power Saving Mode ON</button>
-        <button type="button" onClick= {this.powerSavingModeOff}>Power Saving OFF</button>
-        <button type="button" onClick= {this.setToCurrentTemp}>Default Temp</button>
-        <button type="button" onClick= {this.getWeather}>Get Weather</button>
+        <h1 className="temp">{this.state.currentTemp}C</h1>
+        <button className="btn" type="button" onClick= {this.changeTempDown}>Temp Down</button>
+        <button className="btn" type="button" onClick= {this.changeTempUp}>Temp Up</button>
+        <button className="btn" type="button" onClick= {this.powerSavingModeOn}>Power Saving Mode ON</button>
+        <button className="btn" type="button" onClick= {this.powerSavingModeOff}>Power Saving OFF</button>
+        <button className="btn" type="button" onClick= {this.setToCurrentTemp}>Default Temp</button>
+        <button className="btn" type="button" onClick= {this.getWeather}>Get Weather</button>
       </div>
     )
   }
