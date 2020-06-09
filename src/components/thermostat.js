@@ -50,7 +50,7 @@ export class Thermostat extends Component {
   }
   
   getWeather = () => {
-    fetch("../public/weather.json")//()
+    fetch("../public/weather.json")
     .then(response => response.json())
     .then(weather =>
       this.setState({
@@ -64,7 +64,7 @@ export class Thermostat extends Component {
       <div>
         <h1 className="temp">{this.state.currentTemp}C</h1>
         <button className="btn" type="button" onClick= {this.changeTempDown}>Temp Down</button>
-        <button className="btn" type="button" onClick= {this.changeTempUp}>Temp Up</button>
+        <button className="btn" type="button" id='woo' onClick= {this.changeTempUp}>Temp Up</button>
         <button className="btn" type="button" onClick= {this.powerSavingModeOn}>Power Saving Mode ON</button>
         <button className="btn" type="button" onClick= {this.powerSavingModeOff}>Power Saving OFF</button>
         <button className="btn" type="button" onClick= {this.setToCurrentTemp}>Default Temp</button>
