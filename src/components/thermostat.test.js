@@ -49,3 +49,29 @@ describe('Power Saving Mode', () => {
     expect(wrapper).toContainReact(temperature)
   })
 })
+
+describe('Minimum temperature', () => {
+  it('cannot go lower than 10', () => {
+    const wrapper = shallow(<Thermostat />)
+    const temperature = <h1 className="temp">10C</h1>
+    const button = wrapper.find('#tempDown')
+    for (let i = 0; i < 11; i++) {
+      button.simulate('click')
+    }
+    expect(wrapper).toContainReact(temperature)
+  })
+})
+
+describe('Default temperature button', () => {
+  it('returns the temperature to 20', () => {
+    const wrapper = shallow(<Thermostat />)
+    const temperature = <h1 className="temp">20C</h1>
+    const defaultButton = wrapper.find('#default')
+    const button = wrapper.find('#tempDown')
+    for (let i = 0; i < 4; i++) {
+      button.simulate('click')
+    }
+    defaultButton.simulate('click')
+    expect(wrapper).toContainReact(temperature)
+  })
+})
