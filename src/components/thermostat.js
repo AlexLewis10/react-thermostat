@@ -66,7 +66,7 @@ export class Thermostat extends Component {
         <button className="btn" type="button" id='tempDown' onClick= {this.changeTempDown}>Temp Down</button>
         <button className="btn" type="button" id='tempUp' onClick= {this.changeTempUp}>Temp Up</button>
         <button className="btn" type="button" onClick= {this.powerSavingModeOn}>Power Saving Mode ON</button>
-        <button className="btn" type="button" onClick= {this.powerSavingModeOff}>Power Saving OFF</button>
+        <button className="btn" type="button" id='psmOff' onClick= {this.powerSavingModeOff}>Power Saving OFF</button>
         <button className="btn" type="button" onClick= {this.setToCurrentTemp}>Default Temp</button>
         <button className="btn" type="button" onClick= {this.getWeather}>Get Weather</button>
       </div>

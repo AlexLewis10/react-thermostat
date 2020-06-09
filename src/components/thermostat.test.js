@@ -31,8 +31,20 @@ describe('Power Saving Mode', () => {
     const wrapper = shallow(<Thermostat />)
     const temperature = <h1 className="temp">25C</h1>
     const button = wrapper.find('#tempUp')
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 6; i++) {
       button.simulate('click')
+    }
+    expect(wrapper).toContainReact(temperature)
+  })
+
+  it('when off temperature can exceed 25', () => {
+    const wrapper = shallow(<Thermostat />)
+    const temperature = <h1 className="temp">26C</h1>
+    const button = wrapper.find('#psmOff')
+    const upButton = wrapper.find('#tempUp')
+    button.simulate('click')
+    for (let i = 0; i < 6; i++) {
+      upButton.simulate('click')
     }
     expect(wrapper).toContainReact(temperature)
   })
