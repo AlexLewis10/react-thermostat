@@ -57,7 +57,18 @@ export class Thermostat extends Component {
         locationWeather: weather
       })
     )
+    console.log(this.locationWeather)
   }
+
+
+  // $('#update-weather').click( function(e) {
+  //   e.preventDefault()
+  //   var location = $('#location').val()
+  //   $.get('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=a3d9eb01d4de82b9b8d0849ef604dbed', function(data) {
+  //   $('#london-weather').text(data.weather[0].description);
+    
+  //   })
+  // })
 
   render() {
     return (

@@ -69,7 +69,7 @@ describe('Power Saving Mode', () => {
     const button = wrapper.find('#psmOff')
     const upButton = wrapper.find('#tempUp')
     button.simulate('click')
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 13; i++) {
       upButton.simulate('click')
     }
     expect(wrapper).toContainReact(temperature)
