@@ -48,6 +48,18 @@ describe('Power Saving Mode', () => {
     }
     expect(wrapper).toContainReact(temperature)
   })
+
+  it('when off temperature cannot exceed 32', () => {
+    const wrapper = shallow(<Thermostat />)
+    const temperature = <h1 className="temp">32C</h1>
+    const button = wrapper.find('#psmOff')
+    const upButton = wrapper.find('#tempUp')
+    button.simulate('click')
+    for (let i = 0; i < 15; i++) {
+      upButton.simulate('click')
+    }
+    expect(wrapper).toContainReact(temperature)
+  })
 })
 
 describe('Minimum temperature', () => {
