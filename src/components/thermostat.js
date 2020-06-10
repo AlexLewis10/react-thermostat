@@ -13,7 +13,8 @@ export class Thermostat extends Component {
       maxTempOff: 32,
       locationWeather: null,
       weatherDescription: null,
-      location: ''
+      location: '',
+      temperature: null
     }
   }
   
@@ -63,11 +64,12 @@ export class Thermostat extends Component {
 
   getWeather = (event) => {
     event.preventDefault()
-    axios.get('http://api.openweathermap.org/data/2.5/weather?q='+ this.state.location +'&appid=a3d9eb01d4de82b9b8d0849ef604dbed')
+    axios.get('http://api.openweathermap.org/data/2.5/weather?q='+ this.state.location +'&units=metric&appid=a3d9eb01d4de82b9b8d0849ef604dbed')
     .then(response => {
       let weather = this.capitalizeString(response.data.weather[0].description)
       this.setState({
-        weatherDescription: weather
+        weatherDescription: weather,
+        temperature: response.data.main.temp
       })
     })
     .catch(error => {
@@ -94,7 +96,7 @@ export class Thermostat extends Component {
               />
               <input type='submit' />
           </form>
-          <p>{this.state.weatherDescription}</p>
+          <p>Temp: {this.state.temperature} Weather: {this.state.weatherDescription}</p>
         </div>
       )
   }
