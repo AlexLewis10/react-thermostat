@@ -12,7 +12,7 @@ export class Thermostat extends Component {
       powerSavingMode: true,
       maxTempOff: 32,
       locationWeather: null,
-      apiData: null,
+      weatherDescription: null,
       location: ''
     }
   }
@@ -57,18 +57,21 @@ export class Thermostat extends Component {
 
   }
 
+  capitalizeString = (weather) => {
+    return weather.charAt(0).toUpperCase() + weather.slice(1)
+  }
+
   getWeather = (event) => {
     event.preventDefault()
     axios.get('http://api.openweathermap.org/data/2.5/weather?q='+ this.state.location +'&appid=a3d9eb01d4de82b9b8d0849ef604dbed')
     .then(response => {
-      let weather = response.data.weather[0].description
-      const weatherFormatted = weather.charAt(0).toUpperCase() + weather.slice(1)
+      let weather = this.capitalizeString(response.data.weather[0].description)
       this.setState({
-        apiData: weatherFormatted
+        weatherDescription: weather
       })
     })
     .catch(error => {
-      this.setState({ apiData: 'Unknown location. Please enter another location'})
+      this.setState({ weatherDescription: 'Unknown location. Please enter another location'})
       console.log(error)
     })
   }
@@ -91,7 +94,7 @@ export class Thermostat extends Component {
               />
               <input type='submit' />
           </form>
-          <p>{this.state.apiData}</p>
+          <p>{this.state.weatherDescription}</p>
         </div>
       )
   }
