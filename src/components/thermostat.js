@@ -62,14 +62,19 @@ export class Thermostat extends Component {
     return weather.charAt(0).toUpperCase() + weather.slice(1)
   }
 
+  formatTemperature = (temperature) => {
+    return temperature.toFixed(0)
+  }
+
   getWeather = (event) => {
     event.preventDefault()
     axios.get('http://api.openweathermap.org/data/2.5/weather?q='+ this.state.location +'&units=metric&appid=a3d9eb01d4de82b9b8d0849ef604dbed')
     .then(response => {
       let weather = this.capitalizeString(response.data.weather[0].description)
+      let formatTemperature = this.formatTemperature(response.data.main.temp) 
       this.setState({
         weatherDescription: weather,
-        temperature: response.data.main.temp
+        temperature: formatTemperature
       })
     })
     .catch(error => {
