@@ -52,14 +52,13 @@ export class Thermostat extends Component {
     this.setState({currentTemp: this.state.defaultTemp})
   }
   
-  myChangeHandler = (event) => {
+  setLocation = (event) => {
     this.setState({location: event.target.value})
 
   }
 
-  handleSubmit= (event) => {
+  getWeather = (event) => {
     event.preventDefault()
-    console.log("hello")
     axios.get('http://api.openweathermap.org/data/2.5/weather?q='+ this.state.location +'&appid=a3d9eb01d4de82b9b8d0849ef604dbed')
     .then(response => {
       this.setState({
@@ -67,6 +66,7 @@ export class Thermostat extends Component {
       })
     })
     .catch(error => {
+      this.setState({ apiData: 'Unknown location. Please enter another location'})
       console.log(error)
     })
   }
@@ -81,11 +81,11 @@ export class Thermostat extends Component {
           <button className="btn" type="button" id='psmOn' onClick= {this.powerSavingModeOn}>Power Saving Mode ON</button>
           <button className="btn" type="button" id='psmOff' onClick= {this.powerSavingModeOff}>Power Saving OFF</button>
           <button className="btn" type="button" id='default' onClick= {this.setToCurrentTemp}>Default Temp</button>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.getWeather}>
             <p>Enter City</p>
             <input 
               type='text'
-              onChange={this.myChangeHandler}
+              onChange={this.setLocation}
               />
               <input type='submit' />
           </form>
