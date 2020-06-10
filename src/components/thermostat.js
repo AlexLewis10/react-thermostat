@@ -61,8 +61,10 @@ export class Thermostat extends Component {
     event.preventDefault()
     axios.get('http://api.openweathermap.org/data/2.5/weather?q='+ this.state.location +'&appid=a3d9eb01d4de82b9b8d0849ef604dbed')
     .then(response => {
+      let weather = response.data.weather[0].description
+      const weatherFormatted = weather.charAt(0).toUpperCase() + weather.slice(1)
       this.setState({
-        apiData: response.data.weather[0].description
+        apiData: weatherFormatted
       })
     })
     .catch(error => {
