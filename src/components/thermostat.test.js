@@ -37,6 +37,20 @@ describe('Power Saving Mode', () => {
     expect(wrapper).toContainReact(temperature)
   })
 
+  it('when psm is off and temperature is above 25, turning psm on returns the temperature to 25', () => {
+    const wrapper = shallow(<Thermostat />)
+    const temperature = <h1 className="temp">25C</h1>
+    const psmOnButton = wrapper.find('#psmOn')
+    const psmOffButton = wrapper.find('#psmOff')
+    const upButton = wrapper.find('#tempUp')
+    psmOffButton.simulate('click')
+    for (let i = 0; i < 6; i++) {
+      upButton.simulate('click')
+    }
+    psmOnButton.simulate('click')
+    expect(wrapper).toContainReact(temperature)
+  })
+
   it('when off temperature can exceed 25', () => {
     const wrapper = shallow(<Thermostat />)
     const temperature = <h1 className="temp">26C</h1>
