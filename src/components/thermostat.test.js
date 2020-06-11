@@ -115,5 +115,5 @@ describe('Temp: and Weather', () => {
     const wrapper = shallow(<Thermostat />)
     expect(wrapper).not.toContainReact(<p>Temp:  Weather: </p>)
   })
- })
+})
  
