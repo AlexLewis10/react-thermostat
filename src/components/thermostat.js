@@ -88,7 +88,7 @@ export class Thermostat extends Component {
 
 
   render() {
-      let defaultDisplay = <div><h1 className="temp">{this.state.currentTemp}C</h1>
+      let defaultDisplay = <div><h1 className="temp">{this.state.currentTemp}°C</h1>
         <button className="btn" type="button" id='tempDown' onClick= {this.changeTempDown}>Temp Down</button>
         <button className="btn" type="button" id='tempUp' onClick= {this.changeTempUp}>Temp Up</button>
         <button className="btn" type="button" id='psmOn' onClick= {this.powerSavingModeOn}>Power Saving Mode ON</button>
