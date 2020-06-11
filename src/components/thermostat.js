@@ -42,8 +42,8 @@ export class Thermostat extends Component {
 
   powerSavingModeOn = () => {
     this.setState({powerSavingMode: true})
-    if (this.state.currentTemp > 25) {
-      this.setState({ currentTemp: 25 })
+    if (this.state.currentTemp > this.state.maxTemp) {
+      this.setState({ currentTemp: this.state.maxTemp })
     }
   }
 
