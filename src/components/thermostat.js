@@ -33,7 +33,7 @@ export class Thermostat extends Component {
   }
 
   changeTempDown = () => {
-    let newTemp = this.state.currentTemp -1
+    let newTemp = this.state.currentTemp - 1
     if (this.state.currentTemp === this.state.minTemp) {
       return
     }
@@ -41,8 +41,10 @@ export class Thermostat extends Component {
   }
 
   powerSavingModeOn = () => {
-    this.setState({powerSavingMode: true, currentTemp: this.state.maxTemp})
-    
+    this.setState({powerSavingMode: true})
+    if (this.state.currentTemp > 25) {
+      this.setState({ currentTemp: 25 })
+    }
   }
 
   powerSavingModeOff = () => {
@@ -55,7 +57,6 @@ export class Thermostat extends Component {
   
   setLocation = (event) => {
     this.setState({location: event.target.value})
-
   }
 
   capitalizeString = (weather) => {
@@ -71,10 +72,10 @@ export class Thermostat extends Component {
     axios.get('http://api.openweathermap.org/data/2.5/weather?q='+ this.state.location +'&units=metric&appid=a3d9eb01d4de82b9b8d0849ef604dbed')
     .then(response => {
       let weather = this.capitalizeString(response.data.weather[0].description)
-      let formatTemperature = this.formatTemperature(response.data.main.temp) 
+      let formattedTemperature = this.formatTemperature(response.data.main.temp) 
       this.setState({
         weatherDescription: weather,
-        temperature: formatTemperature
+        temperature: formattedTemperature
       })
     })
     .catch(error => {

@@ -51,6 +51,14 @@ describe('Power Saving Mode', () => {
     expect(wrapper).toContainReact(temperature)
   })
 
+  it('when temperature is below 25, turning power saving mode on does not increase the temperature to 25', () => {
+    const wrapper = shallow(<Thermostat />)
+    const temperature = <h1 className="temp">20C</h1>
+    const psmOnButton = wrapper.find('#psmOn')
+    psmOnButton.simulate('click')
+    expect(wrapper).toContainReact(temperature)
+  })
+
   it('when off temperature can exceed 25', () => {
     const wrapper = shallow(<Thermostat />)
     const temperature = <h1 className="temp">26C</h1>
