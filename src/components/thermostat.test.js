@@ -113,7 +113,8 @@ describe('Default temperature button', () => {
 describe('Temp: and Weather', () => {
   it('do not appear before the user has searched for a the weather in a location', () => {
     const wrapper = shallow(<Thermostat />)
-    expect(wrapper).not.toContainReact(<div><p>Temp: °C</p><p>Weather: </p></div>)
+    const locationWeather = <div><p>Temp: °C</p><p>Weather: </p></div>
+    expect(wrapper).not.toContainReact(locationWeather)
   })
 })
  
