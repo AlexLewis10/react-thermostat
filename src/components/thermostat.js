@@ -86,8 +86,29 @@ export class Thermostat extends Component {
 
 
   render() {
-      return (
-        <div>
+      if (this.state.temperature != null && this.state.weatherDescription != null) {
+        return (
+          <div>
+            <h1 className="temp">{this.state.currentTemp}C</h1>
+            <button className="btn" type="button" id='tempDown' onClick= {this.changeTempDown}>Temp Down</button>
+            <button className="btn" type="button" id='tempUp' onClick= {this.changeTempUp}>Temp Up</button>
+            <button className="btn" type="button" id='psmOn' onClick= {this.powerSavingModeOn}>Power Saving Mode ON</button>
+            <button className="btn" type="button" id='psmOff' onClick= {this.powerSavingModeOff}>Power Saving OFF</button>
+            <button className="btn" type="button" id='default' onClick= {this.setToCurrentTemp}>Default Temp</button>
+            <form onSubmit={this.getWeather}>
+              <p>Enter City</p>
+              <input 
+                type='text'
+                onChange={this.setLocation}
+                />
+                <input type='submit' />
+            </form>
+            <p>Temp: {this.state.temperature} Weather: {this.state.weatherDescription}</p>
+          </div>
+        )
+      } else {
+        return (
+          <div>
           <h1 className="temp">{this.state.currentTemp}C</h1>
           <button className="btn" type="button" id='tempDown' onClick= {this.changeTempDown}>Temp Down</button>
           <button className="btn" type="button" id='tempUp' onClick= {this.changeTempUp}>Temp Up</button>
@@ -102,9 +123,9 @@ export class Thermostat extends Component {
               />
               <input type='submit' />
           </form>
-          <p>Temp: {this.state.temperature} Weather: {this.state.weatherDescription}</p>
         </div>
-      )
+        )
+      }
   }
 }
 
