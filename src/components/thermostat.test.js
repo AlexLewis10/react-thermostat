@@ -117,4 +117,3 @@ describe('Temp: and Weather', () => {
     expect(wrapper).not.toContainReact(locationWeather)
   })
 })
- 
