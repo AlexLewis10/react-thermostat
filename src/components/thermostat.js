@@ -14,7 +14,8 @@ export class Thermostat extends Component {
       locationWeather: null,
       weatherDescription: null,
       location: '',
-      temperature: null
+      temperature: null,
+      errorMessage: null
     }
   }
   
@@ -75,11 +76,12 @@ export class Thermostat extends Component {
       let formattedTemperature = this.formatTemperature(response.data.main.temp) 
       this.setState({
         weatherDescription: weather,
-        temperature: formattedTemperature
+        temperature: formattedTemperature,
+        errorMessage: null
       })
     })
     .catch(error => {
-      this.setState({ weatherDescription: 'Unknown location. Please enter another location'})
+      this.setState({ errorMessage: 'Unknown location. Please enter another location'})
       console.log(error)
     })
   }
@@ -102,11 +104,18 @@ export class Thermostat extends Component {
         </form>
         </div>
 
-      if (this.state.temperature != null && this.state.weatherDescription != null) {
+      if (this.state.temperature != null && this.state.weatherDescription != null && this.state.errorMessage === null) {
         return (
           <div>
             {mainButtons}
             <p>Temp: {this.state.temperature} Weather: {this.state.weatherDescription}</p>
+          </div>
+        )
+      } else if (this.state.errorMessage != null) {
+        return (
+          <div>
+            {mainButtons}
+            <p>{this.state.errorMessage}</p>
           </div>
         )
       } else {
