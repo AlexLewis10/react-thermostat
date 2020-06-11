@@ -88,7 +88,7 @@ export class Thermostat extends Component {
 
 
   render() {
-      let mainButtons = <div><h1 className="temp">{this.state.currentTemp}C</h1>
+      let defaultDisplay = <div><h1 className="temp">{this.state.currentTemp}C</h1>
         <button className="btn" type="button" id='tempDown' onClick= {this.changeTempDown}>Temp Down</button>
         <button className="btn" type="button" id='tempUp' onClick= {this.changeTempUp}>Temp Up</button>
         <button className="btn" type="button" id='psmOn' onClick= {this.powerSavingModeOn}>Power Saving Mode ON</button>
@@ -107,21 +107,22 @@ export class Thermostat extends Component {
       if (this.state.temperature != null && this.state.weatherDescription != null && this.state.errorMessage === null) {
         return (
           <div>
-            {mainButtons}
-            <p>Temp: {this.state.temperature} Weather: {this.state.weatherDescription}</p>
+            {defaultDisplay}
+            <p>Temp: {this.state.temperature}°C</p>
+            <p>Weather: {this.state.weatherDescription}</p>
           </div>
         )
       } else if (this.state.errorMessage != null) {
         return (
           <div>
-            {mainButtons}
+            {defaultDisplay}
             <p>{this.state.errorMessage}</p>
           </div>
         )
       } else {
         return (
           <div>
-            {mainButtons}
+            {defaultDisplay}
           </div>
         )
       }
