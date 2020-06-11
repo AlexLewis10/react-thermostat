@@ -1,6 +1,6 @@
 ## React Thermostat
 
-This is a simple project in which I was able to learn the basics of react as well as testing with enzyme.
+This is a simple project in which I was able to learn the basics of React as well as testing with Enzyme.
 
 Deployed: http://thermo-react.surge.sh/
 
