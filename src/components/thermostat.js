@@ -81,7 +81,7 @@ export class Thermostat extends Component {
       })
     })
     .catch(error => {
-      this.setState({ errorMessage: 'Unknown location. Please enter another location'})
+      this.setState({ errorMessage: 'Unknown location. Please enter another location.'})
       console.log(error)
     })
   }
